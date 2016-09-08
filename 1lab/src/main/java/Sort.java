@@ -6,6 +6,10 @@
 
 public class Sort {
     public static void gnomeSort(Object[] arr){
+        boolean isOrdered = checkInAscendingOrder(arr);
+        if(true == isOrdered)
+            return;
+
         int length = arr.length;
         for(int i = 0; i < length;)
         {
@@ -19,6 +23,10 @@ public class Sort {
     }
 
     public static void heapSort(Object[] arr){
+        boolean isOrdered = checkInAscendingOrder(arr);
+        if(true == isOrdered)
+            return;
+
         int length = arr.length;
 
         //make binary heap
@@ -36,7 +44,6 @@ public class Sort {
 
         }
     }
-
 
     private static void sieve(Object[] arr, int i, int length){
         //Смотрим потомков в пределах ветки
@@ -65,5 +72,17 @@ public class Sort {
         Object t = arr[a];
         arr[a] = arr[b];
         arr[b] = t;
+    }
+
+    public static boolean checkInAscendingOrder(Object[] arr) {
+        int length = arr.length;
+
+        for(int i = 1; i < length; i++)
+        {
+            if(((Comparable) arr[i - 1]).compareTo(arr[i]) > 0)
+                return false;
+        }
+
+        return true;
     }
 }
