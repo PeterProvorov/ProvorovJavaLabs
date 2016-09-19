@@ -11,7 +11,7 @@ import static Sortings.SortUtils.swap;
 public class HeapSort implements SortingInterface{
 
     @Override
-    public <T> void sort(T[] arr, Comparator<? super T> c){
+    public <T> void sort(T[] arr, Comparator<? super T> c) {
         boolean isOrdered = checkInAscendingOrder(arr, c);
         if(isOrdered)
             return;
