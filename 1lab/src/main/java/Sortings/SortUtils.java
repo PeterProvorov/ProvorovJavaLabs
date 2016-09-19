@@ -7,6 +7,11 @@ import java.util.Comparator;
  */
 
 public final class SortUtils {
+
+    private SortUtils() {
+
+    }
+
     public static <T> void swap(T[] arr, int a, int b) {
         T t = arr[a];
         arr[a] = arr[b];

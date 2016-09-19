@@ -1,6 +1,7 @@
 import Sortings.SortingInterface;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -9,11 +10,8 @@ import static org.junit.Assert.assertArrayEquals;
  * Created by ThinkPad on 05.09.2016.
  */
 public class SortTest {
-    SortTest() {
 
-    }
-
-    SortTest(SortingInterface s) {
+    protected SortTest(SortingInterface s) {
         sorter = s;
     }
 
@@ -24,6 +22,8 @@ public class SortTest {
     private <T extends Comparable<T>> void test(T[] arr, Comparator<? super T> c) {
         T[] originArr = arr.clone();
         T[] sortedArr = arr.clone();
+
+        Arrays.sort(originArr);
 
         sorter.sort(sortedArr, c);
         assertArrayEquals(sortedArr, originArr);

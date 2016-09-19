@@ -9,14 +9,11 @@ import static Sortings.SortUtils.swap;
  * Created by ThinkPad on 10.09.2016.
  */
 public class HeapSort implements SortingInterface{
-    public static <T extends Comparable<T>> void sort(T[] arr) {
-        new HeapSort().sort(arr, Comparable::compareTo);
-    }
 
     @Override
     public <T> void sort(T[] arr, Comparator<? super T> c){
         boolean isOrdered = checkInAscendingOrder(arr, c);
-        if(true == isOrdered)
+        if(isOrdered)
             return;
 
         int length = arr.length;
