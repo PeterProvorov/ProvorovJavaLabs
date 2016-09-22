@@ -1,17 +1,18 @@
 import Sortings.SortingInterface;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Random;
+import java.util.Date;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by ThinkPad on 05.09.2016.
  */
 public class SortTest {
 
-    protected SortTest(SortingInterface s) {
+    SortTest(SortingInterface s) {
         sorter = s;
     }
 
@@ -23,16 +24,59 @@ public class SortTest {
         T[] originArr = arr.clone();
         T[] sortedArr = arr.clone();
 
-        Arrays.sort(originArr);
-
         sorter.sort(sortedArr, c);
-        assertArrayEquals(sortedArr, originArr);
 
+        assertTrue(checkCorrectSorting(originArr, sortedArr, c));
+
+    }
+
+    private <T extends Comparable<T>> boolean checkCorrectSorting(T[] originArr, T[] sortedArr, Comparator<? super T> c) {
+        int length = sortedArr.length;
+        if(originArr.length != sortedArr.length)
+            return false;
+
+        //check order
+        for(int i = 1; i < length; i++) {
+            if(c.compare(sortedArr[i - 1], sortedArr[i]) > 0)
+                return false;
+        }
+
+        //check correct array content
+        for(T arrElem : sortedArr) {
+            int sameElemCount = 0;
+            for(T arrElem1 : sortedArr) {
+                if(arrElem == arrElem1)
+                    sameElemCount++;
+            }
+
+            for(T arrElem1 : originArr) {
+                if(arrElem == arrElem1)
+                    sameElemCount--;
+            }
+
+            if(sameElemCount != 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    private Integer[] getRandomArray(int arrLength) {
+        Integer[] arr = new Integer[arrLength];
+
+        Date date = new Date();
+        final Random random = new Random(date.getTime());
+
+        for(int i = 0; i < arrLength; i++)
+            arr[i] = random.nextInt();
+
+        return arr;
     }
 
     @Test
     public void oddIntArray() {
-        test(new Integer[]{7, 3, 9, 1, 2});
+        for(int i = 0; i < 10; i++)
+            test(getRandomArray(2 << i + 1));
     }
 
     @Test
@@ -42,7 +86,8 @@ public class SortTest {
 
     @Test
     public void evenArray() {
-        test(new Integer[]{7, 3, 9, 1, 2, -1});
+        for(int i = 0; i < 10; i++)
+            test(getRandomArray(2 << i));
     }
 
     @Test
@@ -52,7 +97,14 @@ public class SortTest {
 
     @Test
     public void monoArray() {
-        test(new Integer[]{1, 1, 1, 1, 1, 1, 1, 1, 1});
+        for(int i = -5; i < 5; i++) {
+            final int size = 100;
+            Integer[] arr = new Integer[size];
+            for(int g = 0; g < size; g++)
+                arr[g] = i;
+
+            test(arr);
+        }
     }
 
     @Test
