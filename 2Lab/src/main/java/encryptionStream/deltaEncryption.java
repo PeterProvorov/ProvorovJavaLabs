@@ -10,27 +10,27 @@ import java.io.*;
 public class deltaEncryption implements bufferedReader {
 
     public static void code(String inFileName, String outFileName) throws IOException {
-        try(InputStream inputStream = new deltaEncryptionInputStream(new FileInputStream(inFileName));
-            OutputStream outputStream = new FileOutputStream(outFileName)) {
+        try (InputStream inputStream = new deltaEncryptionInputStream(new FileInputStream(inFileName));
+             OutputStream outputStream = new FileOutputStream(outFileName)) {
             bufferedReader.rewrite(inputStream, outputStream);
         }
     }
 
     public static void code() throws IOException {
-        try(InputStream inputStream = new deltaEncryptionInputStream(System.in)) {
+        try (InputStream inputStream = new deltaEncryptionInputStream(System.in)) {
             bufferedReader.rewrite(inputStream, System.out);
         }
     }
 
     public static void decode(String inFileName, String outFileName) throws IOException {
-        try(InputStream inputStream = new FileInputStream(inFileName);
-            OutputStream outputStream = new deltaEncryptionOutputStream(new FileOutputStream(outFileName))) {
+        try (InputStream inputStream = new FileInputStream(inFileName);
+             OutputStream outputStream = new deltaEncryptionOutputStream(new FileOutputStream(outFileName))) {
             bufferedReader.rewrite(inputStream, outputStream);
         }
     }
 
     public static void decode() throws IOException {
-        try(OutputStream outputStream = new deltaEncryptionOutputStream(System.out)) {
+        try (OutputStream outputStream = new deltaEncryptionOutputStream(System.out)) {
             bufferedReader.rewrite(System.in, outputStream);
         }
     }
@@ -63,7 +63,7 @@ public class deltaEncryption implements bufferedReader {
                 if (commandLine.getOptionValue("e").equals("stdin")) {
                     deltaEncryption.code();
                 } else {
-                    if(commandLine.hasOption("out")) {
+                    if (commandLine.hasOption("out")) {
                         deltaEncryption.code(commandLine.getOptionValue("e"), commandLine.getOptionValue("out"));
                     } else {
                         String inFileName = commandLine.getOptionValue("e");
@@ -76,7 +76,7 @@ public class deltaEncryption implements bufferedReader {
                 if (commandLine.getOptionValue("d").equals("stdin")) {
                     deltaEncryption.decode();
                 } else {
-                    if(commandLine.hasOption("out")) {
+                    if (commandLine.hasOption("out")) {
                         deltaEncryption.decode(commandLine.getOptionValue("d"), commandLine.getOptionValue("out"));
                     } else {
                         String inFileName = commandLine.getOptionValue("d");

@@ -13,7 +13,7 @@ public interface bufferedReader {
     static void rewrite(InputStream inputStream, OutputStream outputStream) throws IOException {
         byte[] buf = new byte[BUFFER_SIZE];
         int bufSize;
-        while((bufSize = inputStream.read(buf, 0, buf.length)) != -1) {
+        while ((bufSize = inputStream.read(buf, 0, buf.length)) != -1) {
             outputStream.write(buf, 0, bufSize);
         }
     }
