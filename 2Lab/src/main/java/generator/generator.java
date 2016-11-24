@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Created by ThinkPad on 28.10.2016.
  */
-public class generator {
+public class Generator {
     private static void generateGaussSequence(double mean, double variance, int size, String outFileName) throws IOException {
         try (OutputStream outputStream = new FileOutputStream(outFileName)) {
             Random rand = new Random();
@@ -65,9 +65,9 @@ public class generator {
                 int size = Integer.parseInt(commandLine.getOptionValue("s"));
 
                 if (commandLine.hasOption("out")) {
-                    generator.generateGaussSequence(mean, var, size, commandLine.getOptionValue("out"));
+                    Generator.generateGaussSequence(mean, var, size, commandLine.getOptionValue("out"));
                 } else {
-                    generator.generateGaussSequence(mean, var, size);
+                    Generator.generateGaussSequence(mean, var, size);
                 }
             }
 

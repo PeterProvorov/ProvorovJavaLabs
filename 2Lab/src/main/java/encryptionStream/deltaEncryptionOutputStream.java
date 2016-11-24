@@ -6,11 +6,11 @@ import java.io.OutputStream;
 /**
  * Created by ThinkPad on 24.10.2016.
  */
-public class deltaEncryptionOutputStream extends OutputStream {
+public class DeltaEncryptionOutputStream extends OutputStream {
     private OutputStream OutputS;
     private int prevCode = 0;
 
-    public deltaEncryptionOutputStream(OutputStream outputStream) {
+    public DeltaEncryptionOutputStream(OutputStream outputStream) {
         OutputS = outputStream;
     }
 

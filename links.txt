@@ -1,0 +1,3 @@
+2lab:
+https://ru.wikipedia.org/wiki/Дельта-кодирование
+https://ru.wikipedia.org/wiki/Нормальное_распределение

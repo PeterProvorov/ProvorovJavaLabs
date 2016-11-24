@@ -14,14 +14,14 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by ThinkPad on 18.11.2016.
  */
-public class deltaEncryptionTest {
+public class DeltaEncryptionTest {
 
     private void codeAndDecodeByteArray(byte[] inputByteArray) throws Exception {
         ByteArrayOutputStream outputByteStream;
-        try (InputStream inputStream = new deltaEncryptionInputStream(new ByteArrayInputStream(inputByteArray));
-             OutputStream outputStream = new deltaEncryptionOutputStream(outputByteStream = new ByteArrayOutputStream())) {
+        try (InputStream inputStream = new DeltaEncryptionInputStream(new ByteArrayInputStream(inputByteArray));
+             OutputStream outputStream = new DeltaEncryptionOutputStream(outputByteStream = new ByteArrayOutputStream())) {
             int code;
-            while ((code = inputStream.read()) != deltaEncryptionInputStream.END_OF_STREAM) {
+            while ((code = inputStream.read()) != DeltaEncryptionInputStream.END_OF_STREAM) {
                 outputStream.write(code);
             }
 
@@ -33,8 +33,8 @@ public class deltaEncryptionTest {
 
     private void bufferedCodeAndDecodeByteArray(byte[] inputByteArray, int bufLength) throws Exception {
         ByteArrayOutputStream outputByteStream;
-        try (InputStream inputStream = new deltaEncryptionInputStream(new ByteArrayInputStream(inputByteArray));
-             OutputStream outputStream = new deltaEncryptionOutputStream(outputByteStream = new ByteArrayOutputStream())) {
+        try (InputStream inputStream = new DeltaEncryptionInputStream(new ByteArrayInputStream(inputByteArray));
+             OutputStream outputStream = new DeltaEncryptionOutputStream(outputByteStream = new ByteArrayOutputStream())) {
             int bufSize = (bufLength < inputByteArray.length) ? bufLength : inputByteArray.length;
             byte[] codeBuf = new byte[bufSize];
             while ((bufSize = inputStream.read(codeBuf, 0, codeBuf.length)) != -1) {

@@ -7,31 +7,31 @@ import java.io.*;
 /**
  * Created by ThinkPad on 23.10.2016.
  */
-public class deltaEncryption implements bufferedReader {
+public class DeltaEncryption implements BufferedReader {
 
     public static void code(String inFileName, String outFileName) throws IOException {
-        try (InputStream inputStream = new deltaEncryptionInputStream(new FileInputStream(inFileName));
+        try (InputStream inputStream = new DeltaEncryptionInputStream(new FileInputStream(inFileName));
              OutputStream outputStream = new FileOutputStream(outFileName)) {
-            bufferedReader.rewrite(inputStream, outputStream);
+            BufferedReader.rewrite(inputStream, outputStream);
         }
     }
 
     public static void code() throws IOException {
-        try (InputStream inputStream = new deltaEncryptionInputStream(System.in)) {
-            bufferedReader.rewrite(inputStream, System.out);
+        try (InputStream inputStream = new DeltaEncryptionInputStream(System.in)) {
+            BufferedReader.rewrite(inputStream, System.out);
         }
     }
 
     public static void decode(String inFileName, String outFileName) throws IOException {
         try (InputStream inputStream = new FileInputStream(inFileName);
-             OutputStream outputStream = new deltaEncryptionOutputStream(new FileOutputStream(outFileName))) {
-            bufferedReader.rewrite(inputStream, outputStream);
+             OutputStream outputStream = new DeltaEncryptionOutputStream(new FileOutputStream(outFileName))) {
+            BufferedReader.rewrite(inputStream, outputStream);
         }
     }
 
     public static void decode() throws IOException {
-        try (OutputStream outputStream = new deltaEncryptionOutputStream(System.out)) {
-            bufferedReader.rewrite(System.in, outputStream);
+        try (OutputStream outputStream = new DeltaEncryptionOutputStream(System.out)) {
+            BufferedReader.rewrite(System.in, outputStream);
         }
     }
 
@@ -61,27 +61,27 @@ public class deltaEncryption implements bufferedReader {
             CommandLine commandLine = parser.parse(options, args);
             if (commandLine.hasOption("e")) {
                 if (commandLine.getOptionValue("e").equals("stdin")) {
-                    deltaEncryption.code();
+                    DeltaEncryption.code();
                 } else {
                     if (commandLine.hasOption("out")) {
-                        deltaEncryption.code(commandLine.getOptionValue("e"), commandLine.getOptionValue("out"));
+                        DeltaEncryption.code(commandLine.getOptionValue("e"), commandLine.getOptionValue("out"));
                     } else {
                         String inFileName = commandLine.getOptionValue("e");
                         String outFileName = inFileName.substring(0, inFileName.lastIndexOf(".")) + ".diffcode";
-                        deltaEncryption.code(inFileName, outFileName);
+                        DeltaEncryption.code(inFileName, outFileName);
                     }
                 }
             }
             if (commandLine.hasOption("d")) {
                 if (commandLine.getOptionValue("d").equals("stdin")) {
-                    deltaEncryption.decode();
+                    DeltaEncryption.decode();
                 } else {
                     if (commandLine.hasOption("out")) {
-                        deltaEncryption.decode(commandLine.getOptionValue("d"), commandLine.getOptionValue("out"));
+                        DeltaEncryption.decode(commandLine.getOptionValue("d"), commandLine.getOptionValue("out"));
                     } else {
                         String inFileName = commandLine.getOptionValue("d");
                         String outFileName = inFileName.substring(0, inFileName.lastIndexOf(".")) + ".diffdecode";
-                        deltaEncryption.code(inFileName, outFileName);
+                        DeltaEncryption.code(inFileName, outFileName);
                     }
                 }
             }

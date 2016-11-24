@@ -20,9 +20,9 @@ public class SortTest {
         test(arr, Comparable::compareTo);
     }
 
-    private <T extends Comparable<T>> void test(T[] arr, Comparator<? super T> c) {
+    private <T> void test(T[] arr, Comparator<? super T> c) {
         T[] originArr = arr.clone();
-        T[] sortedArr = arr.clone();
+        T[] sortedArr = new T[arr.length];
 
         sorter.sort(sortedArr, c);
 
@@ -30,7 +30,7 @@ public class SortTest {
 
     }
 
-    private <T extends Comparable<T>> boolean checkCorrectSorting(T[] originArr, T[] sortedArr, Comparator<? super T> c) {
+    private <T> boolean checkCorrectSorting(T[] originArr, T[] sortedArr, Comparator<? super T> c) {
         int length = sortedArr.length;
         if(originArr.length != sortedArr.length)
             return false;
@@ -45,12 +45,12 @@ public class SortTest {
         for(T arrElem : sortedArr) {
             int sameElemCount = 0;
             for(T arrElem1 : sortedArr) {
-                if(arrElem == arrElem1)
+                if(arrElem.equals(arrElem1))
                     sameElemCount++;
             }
 
             for(T arrElem1 : originArr) {
-                if(arrElem == arrElem1)
+                if(arrElem.equals(arrElem1))
                     sameElemCount--;
             }
 

@@ -6,12 +6,12 @@ import java.io.InputStream;
 /**
  * Created by ThinkPad on 23.10.2016.
  */
-public class deltaEncryptionInputStream extends InputStream {
+public class DeltaEncryptionInputStream extends InputStream {
     private InputStream inputS;
     private int prev = 0;
     public static final int END_OF_STREAM = 256;
 
-    public deltaEncryptionInputStream(InputStream inputStream) {
+    public DeltaEncryptionInputStream(InputStream inputStream) {
         inputS = inputStream;
     }
 
