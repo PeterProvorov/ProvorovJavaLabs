@@ -81,7 +81,7 @@ public class DeltaEncryption implements BufferedReader {
                     } else {
                         String inFileName = commandLine.getOptionValue("d");
                         String outFileName = inFileName.substring(0, inFileName.lastIndexOf(".")) + ".diffdecode";
-                        DeltaEncryption.code(inFileName, outFileName);
+                        DeltaEncryption.decode(inFileName, outFileName);
                     }
                 }
             }

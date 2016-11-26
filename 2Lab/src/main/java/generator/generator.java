@@ -28,7 +28,8 @@ public class Generator {
             for (int i = 0; i < size; i++) {
                 double tmpRes = rand.nextGaussian() * Math.sqrt(variance) + mean;
                 int res = Math.abs((int) (10 * tmpRes));
-                outputStream.write(res);
+                //outputStream.write(res);
+                System.out.println(res + " ");
             }
         }
     }
