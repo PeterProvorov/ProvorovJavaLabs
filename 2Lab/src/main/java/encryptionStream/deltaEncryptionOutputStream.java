@@ -7,16 +7,16 @@ import java.io.OutputStream;
  * Created by ThinkPad on 24.10.2016.
  */
 public class DeltaEncryptionOutputStream extends OutputStream {
-    private OutputStream OutputS;
+    private OutputStream outputStream;
     private int prevCode = 0;
 
     public DeltaEncryptionOutputStream(OutputStream outputStream) {
-        OutputS = outputStream;
+        this.outputStream = outputStream;
     }
 
     @Override
     public void write(int code) throws IOException {
-        OutputS.write(code + prevCode);
+        outputStream.write(code + prevCode);
         prevCode += code;
     }
 
@@ -42,11 +42,11 @@ public class DeltaEncryptionOutputStream extends OutputStream {
 
     @Override
     public void close() throws IOException {
-        OutputS.close();
+        outputStream.close();
     }
 
     @Override
     public void flush() throws IOException {
-        OutputS.flush();
+        outputStream.flush();
     }
 }

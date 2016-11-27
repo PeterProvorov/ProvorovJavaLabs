@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * Created by ThinkPad on 24.10.2016.
  */
 public interface BufferedReader {
-    int BUFFER_SIZE = 100;
+    final int BUFFER_SIZE = 100;
 
     static void rewrite(InputStream inputStream, OutputStream outputStream) throws IOException {
         byte[] buf = new byte[BUFFER_SIZE];
